@@ -1,0 +1,5 @@
+package entities.DTO;
+
+public class Usuario {
+
+}

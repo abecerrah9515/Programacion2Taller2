@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;VentanaCalculadora.java&apos; to &apos;Calculadora/src/vistas&apos;&#x0D;&#x0A;- Original project: &apos;Calculadora&apos;&#x0D;&#x0A;- Destination element: &apos;Calculadora/src/vistas&apos;&#x0D;&#x0A;- Original element: &apos;vistas.VentanaCalculadora.java&apos;" description="Copy compilation unit" destination="/src&lt;vistas" element1="/src&lt;vistas{VentanaCalculadora.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1727145337606" units="1" version="1.0"/>
+</session>

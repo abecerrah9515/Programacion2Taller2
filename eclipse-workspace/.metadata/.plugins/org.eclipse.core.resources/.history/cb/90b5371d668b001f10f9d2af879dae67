@@ -1,0 +1,12 @@
+package Controllers;
+
+import javax.swing.JFrame;
+
+public class ControladorPersonas {
+
+	private JFrame pantalla;
+	
+	public void getPeople(JFrame vc) {
+		this.pantalla = vc;
+	}
+}

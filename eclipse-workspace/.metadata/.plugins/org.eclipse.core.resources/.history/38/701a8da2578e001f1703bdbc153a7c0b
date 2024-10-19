@@ -1,0 +1,15 @@
+package domain;
+import entities.DTO.*;
+import infrastructure.UsersRepository;
+
+public class UsersDomain {
+	public Usuario consultarUsuario(long numeroDocumento) {
+		try {
+			UsersRepository _repository = new UsersRepository();
+			return _repository.getUsusario(numeroDocumento);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+}

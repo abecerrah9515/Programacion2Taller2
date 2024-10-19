@@ -1,0 +1,70 @@
+package Vistas;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+public class Pantalla extends JFrame {
+	
+	private JButton btn;
+	private JTextArea txt;
+	
+	public Pantalla() {
+		inicializar();
+		dimensionar();
+		adicionar();
+		mostrar();
+		acciones();
+	}
+	
+	public void mostrar() {
+		this.setSize(300,500);
+		this.setVisible(true);
+	}
+	
+	private void acciones() {
+		this.btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+	}
+	
+	private void adicionar() {
+		this.add(btn);
+		this.add(txt);
+	}
+	private void dimensionar() {
+		this.setLayout(null);
+		this.btn.setBounds(10, 10, 200, 20);
+		this.txt.setBounds(10, 40, 280, 250);
+	}
+	private void inicializar() {
+	    this.btn = new JButton("Validar Datos");
+	    this.txt = new JTextArea();
+	}
+}

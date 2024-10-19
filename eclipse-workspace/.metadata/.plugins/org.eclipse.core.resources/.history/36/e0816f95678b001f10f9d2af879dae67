@@ -1,0 +1,16 @@
+package Controllers;
+
+import javax.swing.JFrame;
+
+import models.ModeloPersonas;
+
+public class ControladorPersonas {
+
+	private JFrame pantalla;
+	
+	public void getPeople(JFrame pan) {
+		this.pantalla = pan;
+		ModeloPersonas mp = new ModeloPersonas();
+		String resultado = mp.getPeople();
+	}
+}

@@ -1,0 +1,60 @@
+package infrastructure;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+public class UsersRepository {
+	public String getUsers() {
+		try {
+			Repository c = new Repository();
+			Connection con = c.getConnection();
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery("select tblu.id_usuario, "
+					+ "	tblu.id_tipo_documento, "
+					+ "	tbltd.abreviatura, "
+					+ "	tblu.documento, "
+					+ "	tblu.fecha_expedicion, "
+					+ "	tblu.nombres, "
+					+ "	tblu.apellidos, "
+					+ "	tblu.numero_hijos, "
+					+ "	tblu.celular, "
+					+ "	tblu.correo_electronico, "
+					+ "	tblu.contrasenha, "
+					+ "	tblu.id_genero, "
+					+ "	tblg.descripcion, "
+					+ "	tblu.id_grup_sang, "
+					+ "	tblgs.descripcion, "
+					+ "	tblu.id_rh, "
+					+ "	tblrh.descripcion, "
+					+ "	tblu.id_esta_civil, "
+					+ "	tblec.descripcion "
+					+ "from taller2.tbl_Usuario as tblu "
+					+ "inner join taller2.tbl_TipoDocumento as tbltd "
+					+ "	on tblu.id_tipo_documento = tbltd.id_tipo_documento "
+					+ "inner join taller2.tbl_Genero as tblg "
+					+ "	on tblu.id_genero = tblg.id_genero "
+					+ "inner join taller2.tbl_Grupo_Sanguineo as tblgs "
+					+ "	 on tblu.id_grup_sang = tblgs.id_grup_sang "
+					+ "inner join taller2.tbl_Rh as tblrh "
+					+ "	on tblu.id_rh = tblrh.id_rh "
+					+ "inner join taller2.tbl_Estado_Civil as tblec "
+					+ "	on tblu.id_esta_civil = tblec.id_esta_civil;");
+			String resultadoBD = "";
+			while (rs.next()) {
+				resultadoBD += "ID: " + rs.getInt("id_persona") + "\n";
+				resultadoBD += "Nombre: " + rs.getString("nombre") + "\n";
+				resultadoBD += "Apellido: " + rs.getString("apellido") + "\n";
+				resultadoBD += "Cedula: "+ rs.getInt("cedula") + "\n";
+				resultadoBD += "Edad: " + rs.getInt("edad") + "\n";
+				resultadoBD += "Fecha Nacimiento: " + rs.getString("fecha_nacimiento") + "\n";
+				resultadoBD += "Nit Biologico:" + rs.getInt("nit_biologico") + "\n";
+				resultadoBD += "---------------------------------------------------\n";
+			}
+			c.closeConnection(con);
+			return resultadoBD;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+}
