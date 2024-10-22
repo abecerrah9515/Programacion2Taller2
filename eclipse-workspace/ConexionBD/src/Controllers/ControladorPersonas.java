@@ -16,3 +16,4 @@ public class ControladorPersonas {
 		pan.setTextJTA(resultado);
 	}
 }
+

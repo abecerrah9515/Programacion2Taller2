@@ -43,12 +43,19 @@
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="entities.DTO.Genero"/>
     <fullyQualifiedTypeName name="entities.DTO.Rh"/>
-    <fullyQualifiedTypeName name="java.lang.Long"/>
-    <fullyQualifiedTypeName name="entities.DTO.Usuario"/>
     <fullyQualifiedTypeName name="infrastructure.UsersRepository"/>
     <fullyQualifiedTypeName name="java.lang.reflect.Constructor"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="entities.DTO.Estado_Civil"/>
     <fullyQualifiedTypeName name="entities.DTO.GrupoSanguineo"/>
     <fullyQualifiedTypeName name="entities.DTO.TipoDocumento"/>
+    <fullyQualifiedTypeName name="controllers.UsuariosController"/>
+    <fullyQualifiedTypeName name="views.UsuarioView"/>
+    <fullyQualifiedTypeName name="views.CrearUsuarioView"/>
+    <fullyQualifiedTypeName name="java.lang.Long"/>
+    <fullyQualifiedTypeName name="entities.DTO.Usuario"/>
+    <fullyQualifiedTypeName name="controllers.ConsultarUsuarioController"/>
+    <fullyQualifiedTypeName name="views.ConsultarUsuarioView"/>
+    <fullyQualifiedTypeName name="domain.UsersDomain"/>
+    <fullyQualifiedTypeName name="views.VerUsuarioView"/>
 </qualifiedTypeNameHistroy>

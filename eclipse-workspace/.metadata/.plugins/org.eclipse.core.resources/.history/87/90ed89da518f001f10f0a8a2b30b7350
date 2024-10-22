@@ -1,0 +1,45 @@
+package controllers;
+
+import javax.swing.JOptionPane;
+
+import entities.DTO.Usuario;
+import infrastructure.UsersRepository;
+import views.CrearUsuarioView;
+
+public class UsuariosController {
+	private CrearUsuarioView _crearUsuarioView;
+	public void guardarUsuario(CrearUsuarioView view) {
+        try {
+        	_crearUsuarioView = view;
+            // Crear el objeto Usuario y rellenarlo con los datos del formulario
+            Usuario newUser = new Usuario();
+            newUser.setIdTipoDocumento(_crearUsuarioView.comboTipoDocumento.getSelectedIndex() + 1);  // Convertir selección a índice (simulación)
+            newUser.setDocumento(Long.parseLong(_crearUsuarioView.txtDocumento.getText()));
+            newUser.setNombres(_crearUsuarioView.txtNombres.getText());
+            newUser.setApellidos(_crearUsuarioView.txtApellidos.getText());
+            newUser.setNumeroHijos(Integer.parseInt(_crearUsuarioView.txtNumeroHijos.getText()));
+            newUser.setCelular(_crearUsuarioView.txtCelular.getText());
+            newUser.setCorreoElectronico(_crearUsuarioView.txtCorreo.getText());
+            newUser.setContrasenha(_crearUsuarioView.txtContrasena.getText());
+            newUser.setIdGenero(_crearUsuarioView.comboGenero.getSelectedIndex() + 1);  // Convertir selección a índice
+            newUser.setIdGrupoSang(_crearUsuarioView.comboGrupoSang.getSelectedIndex() + 1);  // Convertir selección a índice
+            newUser.setIdRh(_crearUsuarioView.comboRh.getSelectedIndex() + 1);  // Convertir selección a índice
+            newUser.setIdEstadoCivil(_crearUsuarioView.comboEstadoCivil.getSelectedIndex() + 1);  // Convertir selección a índice
+
+            // Llamar al repositorio para guardar el nuevo usuario
+            UsersRepository usersRepository = new UsersRepository();
+            boolean success = usersRepository.createUsuario(newUser);
+
+            // Mostrar resultado
+            if (success) {
+                JOptionPane.showMessageDialog(view, this, "Usuario creado exitosamente.", 0);
+                _crearUsuarioView.dispose(); // Cerrar la ventana después de guardar
+            } else {
+                JOptionPane.showMessageDialog(view, this, "Error al crear el usuario.", 0);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(view, this, "Error: " + e.getMessage(), 0);
+        }
+    }
+
+}

@@ -1,0 +1,44 @@
+package controllers;
+
+import javax.swing.JOptionPane;
+
+import entities.DTO.Usuario;
+import views.CrearUsuarioView;
+
+public class UsuariosController {
+	private CrearUsuarioView _crearUsuarioView;
+	public void guardarUsuario(CrearUsuarioView view) {
+        try {
+        	_crearUsuarioView = view;
+            // Crear el objeto Usuario y rellenarlo con los datos del formulario
+            Usuario newUser = new Usuario();
+            newUser.setIdTipoDocumento(_crearUsuarioView.comboTipoDocumento.getSelectedIndex() + 1);  // Convertir selección a índice (simulación)
+            newUser.setDocumento(Long.parseLong(txtDocumento.getText()));
+            newUser.setNombres(txtNombres.getText());
+            newUser.setApellidos(txtApellidos.getText());
+            newUser.setNumeroHijos(Integer.parseInt(txtNumeroHijos.getText()));
+            newUser.setCelular(txtCelular.getText());
+            newUser.setCorreoElectronico(txtCorreo.getText());
+            newUser.setContrasenha(txtContrasena.getText());
+            newUser.setIdGenero(comboGenero.getSelectedIndex() + 1);  // Convertir selección a índice
+            newUser.setIdGrupoSang(comboGrupoSang.getSelectedIndex() + 1);  // Convertir selección a índice
+            newUser.setIdRh(comboRh.getSelectedIndex() + 1);  // Convertir selección a índice
+            newUser.setIdEstadoCivil(comboEstadoCivil.getSelectedIndex() + 1);  // Convertir selección a índice
+
+            // Llamar al repositorio para guardar el nuevo usuario
+            UsersRepository usersRepository = new UsersRepository();
+            boolean success = usersRepository.createUsuario(newUser);
+
+            // Mostrar resultado
+            if (success) {
+                JOptionPane.showMessageDialog(this, "Usuario creado exitosamente.");
+                this.dispose(); // Cerrar la ventana después de guardar
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al crear el usuario.");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }
+
+}

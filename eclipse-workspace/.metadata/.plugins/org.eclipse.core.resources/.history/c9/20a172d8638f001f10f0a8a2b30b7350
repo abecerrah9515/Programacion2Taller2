@@ -1,0 +1,33 @@
+package controllers;
+
+import java.util.List;
+
+import domain.UsersDomain;
+import entities.DTO.ComboItem;
+import entities.DTO.TipoDocumento;
+import entities.DTO.Usuario;
+import views.ConsultarUsuarioView;
+
+public class ConsultarUsuarioController {
+	private UsersDomain _usersDomain = new UsersDomain();
+
+    // Método para llenar el ComboBox de tipo de documento en la vista
+    public void llenarComboTipoDocumento(ConsultarUsuarioView view) {
+        List<TipoDocumento> tiposDocumento = _usersDomain.consultarTipoDocumento();
+
+        // Limpiar el combo box antes de llenarlo
+        view.comboTipoDocumento.removeAllItems();
+
+        // Llenar el combo box con los tipos de documento obtenidos de la base de datos
+        for (TipoDocumento tipo : tiposDocumento) {
+            view.comboTipoDocumento.addItem(new ComboItem((Long) tipo.getIdTipoDocumento(), tipo.getDescripcion()));
+        }
+    }
+
+    // Método para consultar usuario con el tipo y número de documento
+    public void consultarUsuario(ConsultarUsuarioView view) {
+        // Aquí iría la lógica para consultar el usuario en la base de datos usando el UsersDomain
+    	Usuario _usr = new Usuario();
+        //_usersDomain.getClass(tipoDocumentoId, numeroDocumento);
+    }
+}

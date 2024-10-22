@@ -1,0 +1,53 @@
+package controllers;
+
+import entities.DTO.Usuario;
+import infrastructure.UsersRepository;
+import views.CrearUsuarioView;
+
+import javax.swing.*;
+
+public class UsuariosController {
+    
+    private UsersRepository usersRepository;
+
+    public UsuariosController() {
+        usersRepository = new UsersRepository();
+    }
+
+    /**
+     * Recibe la vista y extrae los datos del formulario para crear un nuevo usuario.
+     */
+    public void guardarUsuario(CrearUsuarioView view) {
+        try {
+            // Crear un objeto Usuario con los datos ingresados en el formulario
+            Usuario newUser = new Usuario();
+            newUser.setIdTipoDocumento(view.comboTipoDocumento.getSelectedIndex() + 1);  // Simulación de ID
+            newUser.setDocumento(Long.parseLong(view.txtDocumento.getText()));
+            newUser.setNombres(view.txtNombres.getText());
+            newUser.setApellidos(view.txtApellidos.getText());
+            newUser.setNumeroHijos(Integer.parseInt(view.txtNumeroHijos.getText()));
+            newUser.setCelular(view.txtCelular.getText());
+            newUser.setCorreoElectronico(view.txtCorreo.getText());
+            newUser.setContrasenha(view.txtContrasena.getText());
+            newUser.setIdGenero(view.comboGenero.getSelectedIndex() + 1);  // Simulación de ID
+            newUser.setIdGrupoSang(view.comboGrupoSang.getSelectedIndex() + 1);  // Simulación de ID
+            newUser.setIdRh(view.comboRh.getSelectedIndex() + 1);  // Simulación de ID
+            newUser.setIdEstadoCivil(view.comboEstadoCivil.getSelectedIndex() + 1);  // Simulación de ID
+
+            // Llamar al método del repositorio para guardar el usuario
+            boolean success = usersRepository.createUsuario(newUser);
+
+            // Mostrar mensaje de éxito o error
+            if (success) {
+                JOptionPane.showMessageDialog(view, "Usuario creado exitosamente.");
+                view.dispose();  // Cerrar la ventana de creación de usuario
+            } else {
+                JOptionPane.showMessageDialog(view, "Error al crear el usuario.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(view, "Por favor ingresa valores numéricos válidos.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(view, "Error: " + e.getMessage());
+        }
+    }
+}

@@ -1,0 +1,38 @@
+package main;
+import java.util.Date;
+
+import entities.DTO.Usuario;
+import infrastructure.*;
+public class main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		UsersRepository _users = new UsersRepository();		
+		Usuario newUser = new Usuario();
+		newUser.setIdUsuario(1L);
+        newUser.setIdTipoDocumento(1);  // Ejemplo: 1 = cédula de ciudadanía
+        newUser.setDocumento(123456789L);  // Número de documento
+        newUser.setFechaExpedicion(new Date());  // Fecha de expedición (hoy)
+        newUser.setNombres("Juan Alberto");  // Nombre del usuario
+        newUser.setApellidos("Pérez");  // Apellidos del usuario
+        newUser.setNumeroHijos(2);  // Número de hijos
+        newUser.setCelular("3101234567");  // Celular
+        newUser.setCorreoElectronico("juan.perez@example.com");  // Correo
+        newUser.setContrasenha("password123");  // Contraseña
+        newUser.setIdGenero(1);  // Ejemplo: 1 = Masculino
+        newUser.setIdGrupoSang(1);  // Grupo sanguíneo (ejemplo)
+        newUser.setIdRh(1);  // Factor RH (ejemplo)
+        newUser.setIdEstadoCivil(1);
+        
+        boolean success = _users.updateUsuario(newUser);
+
+        // Imprimir el resultado de la operación
+        if (success) {
+            System.out.println("El usuario fue creado exitosamente.");
+        } else {
+            System.out.println("Error al crear el usuario.");
+        }
+		_users.getGenero();
+	}
+
+}

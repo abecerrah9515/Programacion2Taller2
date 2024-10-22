@@ -1,0 +1,108 @@
+package views;
+
+import javax.swing.*;
+
+import controllers.UsuariosController;
+import entities.DTO.Usuario;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class CrearUsuarioView extends JFrame {
+    // Componentes del formulario
+    public JTextField txtDocumento, txtNombres, txtApellidos, txtNumeroHijos, txtCelular, txtCorreo, txtContrasena;
+    public JComboBox<String> comboTipoDocumento;
+	public JComboBox<String> comboGenero;
+	public JComboBox<String> comboGrupoSang;
+	public JComboBox<String> comboRh;
+	public JComboBox<String> comboEstadoCivil;
+    public JButton btnGuardar;
+    private UsuariosController _usuariosController;
+    
+    public CrearUsuarioView() {
+        // Configuración del JFrame
+        setTitle("Crear Usuario");
+        setSize(400, 500);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Permite cerrar esta ventana sin cerrar la aplicación principal
+        setLocationRelativeTo(null);
+        setLayout(new GridLayout(12, 2)); // Disposición de la ventana con 12 filas y 2 columnas
+
+        // Crear los labels y campos del formulario
+        add(new JLabel("Tipo de Documento:"));
+        comboTipoDocumento = new JComboBox<>(new String[] { "Cédula de Ciudadanía", "Tarjeta de Identidad", "Cédula de Extranjería", "Pasaporte" });
+        add(comboTipoDocumento);
+
+        add(new JLabel("Número de Documento:"));
+        txtDocumento = new JTextField();
+        add(txtDocumento);
+
+        add(new JLabel("Nombres:"));
+        txtNombres = new JTextField();
+        add(txtNombres);
+
+        add(new JLabel("Apellidos:"));
+        txtApellidos = new JTextField();
+        add(txtApellidos);
+
+        add(new JLabel("Número de Hijos:"));
+        txtNumeroHijos = new JTextField();
+        add(txtNumeroHijos);
+
+        add(new JLabel("Celular:"));
+        txtCelular = new JTextField();
+        add(txtCelular);
+
+        add(new JLabel("Correo Electrónico:"));
+        txtCorreo = new JTextField();
+        add(txtCorreo);
+
+        add(new JLabel("Contraseña:"));
+        txtContrasena = new JTextField();
+        add(txtContrasena);
+
+        add(new JLabel("Género:"));
+        comboGenero = new JComboBox<>(new String[] { "Masculino", "Femenino" });
+        add(comboGenero);
+
+        add(new JLabel("Grupo Sanguíneo:"));
+        comboGrupoSang = new JComboBox<>(new String[] { "A", "B", "AB", "O" });
+        add(comboGrupoSang);
+
+        add(new JLabel("RH:"));
+        comboRh = new JComboBox<>(new String[] { "+", "-" });
+        add(comboRh);
+
+        add(new JLabel("Estado Civil:"));
+        comboEstadoCivil = new JComboBox<>(new String[] { "Soltero", "Casado", "Divorciado", "Viudo" });
+        add(comboEstadoCivil);
+
+        // Botón Guardar
+        btnGuardar = new JButton("Guardar");
+        add(new JLabel()); // Espacio vacío
+        add(btnGuardar);
+
+        // Acción al hacer clic en "Guardar"
+        btnGuardar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	
+                guardarUsuario(); // Método que se ejecuta al guardar el usuario
+            }
+        });
+    }
+    
+
+    protected void guardarUsuario() {
+    	_usuariosController = new UsuariosController();
+    	_usuariosController.guardarUsuario(this);
+		
+	}
+
+
+	public static void main(String[] args) {
+        // Ejecutar la vista
+        CrearUsuarioView crearUsuarioView = new CrearUsuarioView();
+        crearUsuarioView.setVisible(true);
+    }
+}

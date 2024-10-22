@@ -9,7 +9,7 @@ public class Repository {
 	public Connection getConnection() {
 		try {
 			Class.forName("org.postgresql.Driver");
-			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres", "Laura0423*");
+			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","postgres", "Ab.1031161766.1");
 			return connection;
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,0 +1,87 @@
+package views;
+
+import javax.swing.*;
+
+import controllers.ConsultarUsuarioController;
+import controllers.UsuariosController;
+import entities.DTO.ComboItem;
+import entities.DTO.Usuario;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ConsultarUsuarioView extends JDialog {
+    public JComboBox<ComboItem> comboTipoDocumento;
+    private JTextField txtNumeroDocumento;
+    private JButton btnBuscar;
+    private ConsultarUsuarioController _usuariosController;
+
+    public ConsultarUsuarioView(JFrame parent) {
+        super(parent, "Consultar Usuario", true);
+        _usuariosController = new ConsultarUsuarioController();
+
+        // Configuración del JDialog
+        setSize(400, 200);
+        setLayout(null);
+        setLocationRelativeTo(parent);
+
+        // Etiqueta y combo box para tipo de documento
+        JLabel lblTipoDocumento = new JLabel("Tipo de Documento:");
+        lblTipoDocumento.setBounds(30, 30, 150, 25);
+        add(lblTipoDocumento);
+
+        comboTipoDocumento = new JComboBox<>();
+        comboTipoDocumento.setBounds(180, 30, 150, 25);
+        add(comboTipoDocumento);
+
+        // Etiqueta y campo para número de documento
+        JLabel lblNumeroDocumento = new JLabel("Número de Documento:");
+        lblNumeroDocumento.setBounds(30, 70, 150, 25);
+        add(lblNumeroDocumento);
+
+        txtNumeroDocumento = new JTextField();
+        txtNumeroDocumento.setBounds(180, 70, 150, 25);
+        add(txtNumeroDocumento);
+
+        // Botón Buscar
+        btnBuscar = new JButton("Buscar");
+        btnBuscar.setBounds(150, 120, 100, 30);
+        add(btnBuscar);
+
+        // Acción al hacer clic en el botón "Buscar"
+        btnBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                buscarUsuario();
+            }
+        });
+
+        // Llamar al controlador para llenar el combo de tipo de documento
+        _usuariosController.llenarComboTipoDocumento(this);
+    }
+
+    private void buscarUsuario() {
+        try {
+            // Obtener el tipo de documento seleccionado
+            ComboItem selectedTipoDocumento = (ComboItem) comboTipoDocumento.getSelectedItem();
+
+            // Validar número de documento
+            String numeroDocumento = txtNumeroDocumento.getText();
+            if (!numeroDocumento.matches("\\d+")) {
+                JOptionPane.showMessageDialog(this, "El número de documento debe contener solo números.");
+                return;
+            }
+
+            // 
+            _usuariosController.consultarUsuario(this);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al consultar el usuario: " + ex.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+        JFrame parentFrame = new JFrame();
+        ConsultarUsuarioView consultarUsuarioView = new ConsultarUsuarioView(parentFrame);
+        consultarUsuarioView.setVisible(true);
+    }
+}
